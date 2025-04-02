@@ -1,18 +1,22 @@
 # Obsidian MetaData Vault
 
+> ⚠️ 이 저장소는 [테디노트님의 Obsidian Templater](https://github.com/teddylee777/obsidian-templater) 저장소를 기반으로 포크되었습니다.
+> 
+> 원본 저장소의 템플릿을 비개발자들이나 라이트개발유저들을 위해 수정 및 보완한 버전입니다.
+
 이 저장소는 개인 지식 관리 시스템(PKM)을 위한 옵시디언 볼트입니다.
 
 ## 📁 볼트 구조
 
 ```
 .
-├── 1. Personal/        # 개인적인 내용
-├── 2. Relation/        # 관계 관련 내용
-├── 3. Career/          # 커리어 관련 내용
-├── 4. Resource/        # 리소스 모음
-├── 90. Settings/       # 설정 관련
-├── Index/              # 인덱스 및 메인 페이지
-└── P.A.R.A/           # P.A.R.A 방법론 관련
+├── 1. Personal/        # 예시 파일
+├── 2. Relation/        # 예시 파일
+├── 3. Career/          # 예시 파일
+├── 4. Resource/        # 예시 파일
+├── 90. Settings/       # 설정 관련, 탬플릿
+├── Index/              # 생성되는 인덱스 저장
+└── P.A.R.A/           # 생성되는 P.A.R.A  저장
 ```
 
 ## 🚀 시작하기
