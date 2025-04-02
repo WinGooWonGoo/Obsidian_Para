@@ -77,10 +77,9 @@ https://doldol.kr/114
 ```
 <%_*
 // OpenAI API 키 설정
-const GEMINI_API_KEY="여기에 당신의 GEMINI_API_KEY"%>
+const GEMINI_API_KEY="여기에 당신의 GEMINI_API_KEY"
+%>
 ```
-
-![API 키 설정 예시](img/스크린샷%202025-04-02%20오후%202.37.39.png)
 
 ## 🧩 옵시디언 필수 플러그인 소개 (feat. 내가 쓰는 플러그인)
 
@@ -158,15 +157,42 @@ https://doldol.kr/114
 
 여기를 참조해서 구글 GEMINI API 키를 생성해주세요! 그리고 나서 api 키를 각 Template 상단에 모두 첨부해주세요. 반드시 ""안에 넣어야 합니다.
 
-![API 키 설정 예시](img/스크린샷%202025-04-02%20오후%202.37.39.png)
+```
+<%_*
+// OpenAI API 키 설정
+const GEMINI_API_KEY="여기에 당신의 GEMINI_API_KEY"%>
+```
+
 
 ### 커스터마이징 하기
 
 안에는 챗봇을 불러와서 프롬프트로 명령을 내리고, 그 데이터를 다시 받는 구조로 만들어져 있습니다.
 
 #### Template-01-BasicSetup
+```
+<%_*
+// 노트 내용
+const fileContent = tp.file.content;
+_%>
 
-![기본 설정 템플릿](img/스크린샷%202025-04-02%20오후%202.43.15.png)
+<%_*
+// file 가져오기
+const noteType = await tp.system.suggester(
+    ["[[📌 Project]]", "[[📌 Area]]", "[[📌 Resource]]", "[[📌 Archive]]"], 
+    ["[[📌 Project]]", "[[📌 Area]]", "[[📌 Resource]]", "[[📌 Archive]]"], 
+    true, 
+    "노트 옵션을 선택하세요.");
+const file = tp.config.target_file
+
+await tp.app.fileManager.processFrontMatter(file, (frontmatter) => {
+  // metadata 업데이트
+  frontmatter.created = tp.file.creation_date();
+  frontmatter.author = "Won-Goo";
+  frontmatter.type = noteType;
+  frontmatter.source = "";
+});
+_%>
+```
 
 가장 기본적인 메타데이터 설정입니다. 여기선 챗봇이 필요없어서, API도 필요없어요.
 
@@ -175,8 +201,45 @@ https://doldol.kr/114
 그 밑에는 생성날짜와, 작성자이름을 자동으로 설정되게 해놨고요. author안에 역시 원하시는 이름을 넣어주시면 됩니다. 그리고 source는 나중에 연결할 파일들입니다. 여기에 나무위키처럼 다양한 링크들을 넣을 거예요.
 
 ### Index
+```
+<%_*
+// OpenAI API 키 설정
+const GEMINI_API_KEY="여기에 당신의 GEMINI_API_KEY"%>
 
-![인덱스 설정 화면](img/스크린샷%202025-04-02%20오후%202.46.23.png)
+<%_*
+// 프롬프트
+const index_prompt = `You are an expert in generating an appropriate index properties that will be used in Obsidian Note. Your mission is to generate one or two indexes suitable for given content.
+Your generated output must be comma-separated values.
+
+Here is the example output:
+
+### Example Output:
+
+[[🏷️ 스터디]], [[🏷️ Blog]]
+
+Here's a list of possible substitutions for index. You must use one of these indexes listed below.
+
+<Index List>
+- [[🏷️ 자기소개서]] : Cover letter or Personal Statement. Mostly
+- [[🏷️ 스터디]] : Self studying contents. Mostly development self memo will be this index.
+- [[🏷️ Blog]] : Contents used in Blog
+- [[🏷️ Research]] : Contents used for Business Research
+- [[🏷️ 사이드 프로젝트]] : Contents related to Side Projects
+- [[🏷️ 커리어]] : Contents used for Career
+- [[🏷️ 데일리 노트]] : Daily note related contents
+</Index List>
+
+####
+
+[Note] 
+- Write your Final Answer in Korean. 
+- DO NOT narrate, just write the output without any markdown formatting of wrapping.
+- Generated indexes must be related to the content. Otherwise, you will be penalized.
+- Generated indexes must be one of the <Index List>
+`
+_%>
+ ```
+
 
 여기서는 인덱스를 관리해요. 보시면 아시겠지만, 글의 목표나 형식들을 관리하려고 하고 있어요. 인덱스가 곧 글의 형식일 필요는 없지만, 이런 식으로 관리하시면 편할 겁니다.
 
