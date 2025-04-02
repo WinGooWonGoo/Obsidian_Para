@@ -72,7 +72,13 @@ memo -> binding -> documenting 의 단계의 특성 때문입니다. PARA의 속
 
 https://doldol.kr/114
 
-여기를 참조해서 구글 GEMINI API 키를 생성해주세요! 그리고 나서 발급받은 api 키를 Template 상단에 모두 첨부해주세요. 반드시 ""안에 넣어야 합니다.
+여기를 참조해서 구글 GEMINI API 키를 생성해주세요! 그리고 나서 발급받은 api 키를 Template 파일들 상단에 모두 첨부해주세요. 반드시 ""안에 넣어야 합니다.
+
+```
+<%_*
+// OpenAI API 키 설정
+const GEMINI_API_KEY="여기에 당신의 GEMINI_API_KEY"%>
+```
 
 ![API 키 설정 예시](img/스크린샷%202025-04-02%20오후%202.37.39.png)
 

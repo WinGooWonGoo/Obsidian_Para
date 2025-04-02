@@ -19,4 +19,8 @@
 
 # Temporary files
 *.tmp
-*.temp 
+*.temp
+
+# Specific files to ignore
+메모, 그 이상을 위하여 — 옵시디언을 활용한 메모의 확장.md
+옵시디언 초기 설정 그대로만 따라하세요..md 
